@@ -1,0 +1,78 @@
+<h1>Budget Dashboard</h1>
+<p>Total Monthly Leftover Money: {{ leftover }}</p>
+
+{% if remaining_info %}
+  <p>
+    Remaining funds until next {{ remaining_info.frequency }} disbursement 
+    ({{ remaining_info.source }} on {{ remaining_info.next_date }} in {{ remaining_info.days_until }} days):
+    ${{ remaining_info.leftover }}
+  </p>
+{% else %}
+  <p>No upcoming disbursement date set.</p>
+{% endif %}
+
+
+<h2>Add Income</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ income_form.as_p }}
+  <button type="submit" name="income_submit">Add Income</button>
+</form>
+
+<h2>Add Bill</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ bill_form.as_p }}
+  <button type="submit" name="bill_submit">Add Bill</button>
+</form>
+
+<h2>Add Spending</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ spending_form.as_p }}
+  <button type="submit" name="spending_submit">Add Spending</button>
+</form>
+
+<hr>
+
+<h2>Income</h2>
+<ul>
+  {% for i in income %}
+    <li>
+      {{ i.source }} - ${{ i.amount }} ({{ i.get_frequency_display }})
+      {% if i.next_disbursement %}
+        → Next: {{ i.next_disbursement }}
+        {% if i.following_disbursement %}
+          | Following: {{ i.following_disbursement }}
+        {% endif %}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+
+<h2>Bills</h2>
+<ul>
+  {% for b in bills %}
+    <li>{{ b.name }} - ${{ b.amount }} (due day {{ b.due_day }})</li>
+  {% endfor %}
+</ul>
+
+<h2>Spending</h2>
+<ul>
+  {% for s in spending %}
+    <li>{{ s.category }} - ${{ s.amount }}</li>
+  {% endfor %}
+</ul>
+
+<hr>
+<h2>Totals</h2>
+<ul>
+  <li>Total Income: ${{ total_income }}</li>
+  <li>Total Bills: ${{ total_bills }}</li>
+  <li>Total Spending: ${{ total_spending }}</li>
+</ul>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" name="clear_all">Clear All Data</button>
+</form>
