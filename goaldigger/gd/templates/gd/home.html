@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'gd/style.css' %}">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh; /* full viewport height */
+            display: flex;
+            justify-content: center; /* horizontal center */
+            align-items: center;     /* vertical center */
+            background-color: #000000;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center; /* center text inside */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #219150; /* darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to GoalDigger</h1>
+        <h1>Digging deep into your wallet… so you don’t have to!</h1>
+        <p>Your personal finance dashboard.</p>
+        <a href="{% url 'dashboard' %}">
+            <button>Go to Dashboard</button>
+        </a>
+    </div>
+</body>
+</html>

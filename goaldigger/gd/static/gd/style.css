@@ -1,0 +1,108 @@
+/* Dark mode base */
+body {
+  background-color: #121212;   /* dark background */
+  color: #e0e0e0;              /* light text */
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+/* Headings */
+h1 {
+  color: #D4AF37;
+}
+
+/* Dashboard layout */
+.dashboard-container {
+  display: flex;
+  justify-content: center;   /* center the data column */
+  align-items: flex-start;
+  gap: 40px;                 /* space between inputs and data */
+}
+
+.summary {
+  text-align: center;
+  color: #D4AF37 ;          /* center text horizontally */
+  margin: 20px auto;           /* center block itself */
+  max-width: 600px;            /* optional: limit width */
+}
+
+.summary h1 {
+  margin-bottom: 10px;
+}
+
+.summary p {
+  margin: 5px 0;
+}
+
+
+/* Inputs column on the left */
+.inputs {
+  flex: 0 0 250px;           /* fixed width for inputs */
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Data column in the center */
+.data {
+  flex: 1;                   /* take remaining space */
+  max-width: 600px;
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Section containers */
+.section {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+/* Income section: green */
+#income-section {
+  background-color: #1b5e20;   /* dark green */
+  border: 1px solid #4caf50;
+}
+
+/* Bills section: orange/red */
+#bills-section {
+  background-color: #bf360c;   /* dark orange-red */
+  border: 1px solid #ff7043;
+}
+
+/* Spending section: purple */
+#spending-section {
+  background-color: #4a148c;   /* deep purple */
+  border: 1px solid #ba68c8;
+}
+
+/* Totals section: blue */
+#totals-section {
+  background-color: #0d47a1;   /* dark blue */
+  border: 1px solid #64b5f6;
+}
+
+/* Buttons */
+button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #1976d2;
+}
+
+/* Responsive: stack inputs above data on small screens */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .inputs, .data {
+    max-width: 100%;
+  }
+}

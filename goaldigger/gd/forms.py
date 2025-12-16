@@ -16,4 +16,4 @@ class BillForm(forms.ModelForm):
 class SpendingForm(forms.ModelForm):
     class Meta:
         model = Spending
-        fields = ['category', 'amount', 'date']
+        fields = ['item', 'amount', 'date']

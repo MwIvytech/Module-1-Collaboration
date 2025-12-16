@@ -3,6 +3,9 @@ from .models import Income, Bill, Spending
 from .utils import calculate_leftover, calculate_remaining_until_next_disbursement
 from .forms import IncomeForm, BillForm, SpendingForm
 
+def home(request):
+    return render(request, "gd/home.html")
+
 def dashboard(request):
     leftover = calculate_leftover()
     remaining_info = calculate_remaining_until_next_disbursement()

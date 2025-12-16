@@ -1,5 +1,7 @@
 from django.db import models
 from datetime import timedelta
+from dateutil.relativedelta import relativedelta
+
 
 class Income(models.Model):
     FREQUENCY_CHOICES = [
@@ -14,7 +16,6 @@ class Income(models.Model):
     next_disbursement = models.DateField(null=True, blank=True)
 
     def following_disbursement(self):
-        """Calculate the following disbursement date after the one stored."""
         if not self.next_disbursement:
             return None
 
@@ -35,11 +36,22 @@ class Bill(models.Model):
     def __str__(self):
         return f"{self.name}: {self.amount} (due day {self.due_day})"
 
+    @property
+    def due_day_display(self):
+        return ordinal(self.due_day)
+
 
 class Spending(models.Model):
-    category = models.CharField(max_length=100)
+    item = models.CharField(max_length=100)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
 
     def __str__(self):
-        return f"{self.category}: {self.amount}"
+        return f"{self.item}: {self.amount}"
+
+def ordinal(n):
+    if 10 <= n % 100 <= 20:
+        suffix = "th"
+    else:
+        suffix = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
