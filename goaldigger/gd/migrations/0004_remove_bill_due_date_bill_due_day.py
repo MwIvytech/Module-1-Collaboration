@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('gd', '0003_income_next_disbursement'),
+        ("gd", "0003_income_next_disbursement"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='bill',
-            name='due_date',
+            model_name="bill",
+            name="due_date",
         ),
         migrations.AddField(
-            model_name='bill',
-            name='due_day',
+            model_name="bill",
+            name="due_day",
             field=models.PositiveSmallIntegerField(default=1),
             preserve_default=False,
         ),

@@ -6,17 +6,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('gd', '0001_initial'),
+        ("gd", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='income',
-            name='date',
+            model_name="income",
+            name="date",
         ),
         migrations.AddField(
-            model_name='income',
-            name='frequency',
-            field=models.CharField(choices=[('weekly', 'Weekly'), ('biweekly', 'Biweekly'), ('monthly', 'Monthly')], default='monthly', max_length=10),
+            model_name="income",
+            name="frequency",
+            field=models.CharField(
+                choices=[
+                    ("weekly", "Weekly"),
+                    ("biweekly", "Biweekly"),
+                    ("monthly", "Monthly"),
+                ],
+                default="monthly",
+                max_length=10,
+            ),
         ),
     ]

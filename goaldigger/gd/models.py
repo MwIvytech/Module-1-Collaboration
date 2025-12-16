@@ -5,25 +5,27 @@ from dateutil.relativedelta import relativedelta
 
 class Income(models.Model):
     FREQUENCY_CHOICES = [
-        ('weekly', 'Weekly'),
-        ('biweekly', 'Biweekly'),
-        ('monthly', 'Monthly'),
+        ("weekly", "Weekly"),
+        ("biweekly", "Biweekly"),
+        ("monthly", "Monthly"),
     ]
 
     source = models.CharField(max_length=100)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    frequency = models.CharField(max_length=10, choices=FREQUENCY_CHOICES, default='monthly')
+    frequency = models.CharField(
+        max_length=10, choices=FREQUENCY_CHOICES, default="monthly"
+    )
     next_disbursement = models.DateField(null=True, blank=True)
 
     def following_disbursement(self):
         if not self.next_disbursement:
             return None
 
-        if self.frequency == 'weekly':
+        if self.frequency == "weekly":
             return self.next_disbursement + timedelta(weeks=1)
-        elif self.frequency == 'biweekly':
+        elif self.frequency == "biweekly":
             return self.next_disbursement + timedelta(weeks=2)
-        elif self.frequency == 'monthly':
+        elif self.frequency == "monthly":
             return self.next_disbursement + relativedelta(months=1)
         return None
 
@@ -48,6 +50,7 @@ class Spending(models.Model):
 
     def __str__(self):
         return f"{self.item}: {self.amount}"
+
 
 def ordinal(n):
     if 10 <= n % 100 <= 20:

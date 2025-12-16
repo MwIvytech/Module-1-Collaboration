@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('gd', '0002_remove_income_date_income_frequency'),
+        ("gd", "0002_remove_income_date_income_frequency"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='income',
-            name='next_disbursement',
+            model_name="income",
+            name="next_disbursement",
             field=models.DateField(blank=True, null=True),
         ),
     ]
