@@ -1,0 +1,42 @@
++-------------------+
+|      Income       |
++-------------------+
+| source: CharField |
+| amount: Decimal   |
+| frequency: Char   |
+| next_disbursement: Date |
++-------------------+
+| following_disbursement() |
++-------------------+
+
++-------------------+
+|       Bill        |
++-------------------+
+| name: CharField   |
+| amount: Decimal   |
+| due_day: Integer  |
++-------------------+
+| __str__()         |
+| due_day_display() |
++-------------------+
+
++-------------------+
+|     Spending      |
++-------------------+
+| item: CharField   |
+| amount: Decimal   |
+| date: Date        |
++-------------------+
+| __str__()         |
++-------------------+
+
+Helper Function:
+ordinal(n) → returns string with ordinal suffix (e.g., 1st, 2nd, 3rd, 4th)
+
+Purpose:
+
+Income: recurring sources of money with frequency (weekly, biweekly, monthly) and disbursement dates.
+
+Bill: recurring expenses with a fixed due day each month.
+
+Spending: ad‑hoc expenses recorded by item, amount, and date.
